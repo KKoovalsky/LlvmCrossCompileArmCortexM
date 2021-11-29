@@ -24,5 +24,6 @@ ProvideLlvmProject()
 
 include(cmake/llvm_project.cmake)
 
+EnableLibcxx()
 EnableCompilerRt()
 EnableLibunwind()

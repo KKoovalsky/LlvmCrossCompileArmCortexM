@@ -29,5 +29,59 @@ function(EnableLibunwind)
     # option(LIBUNWIND_USE_COMPILER_RT "Use compiler-rt instead of libgcc" OFF)
 
     add_subdirectory(${LLVM_PROJECT_PATH}/libunwind)
+endfunction()
+
+function(EnableLibcxx)
+
+    option(LIBCXX_ENABLE_SHARED "Build libc++ as a shared library." OFF)
+    option(LIBCXX_ENABLE_EXPERIMENTAL_LIBRARY "Build libc++experimental.a" OFF)
+    option(LIBCXX_ENABLE_FILESYSTEM "Build filesystem as part of the main libc++ library" OFF)
+    option(LIBCXX_INCLUDE_TESTS "Build the libc++ tests." OFF)
+    option(LIBCXX_ENABLE_RANDOM_DEVICE
+      "Whether to include support for std::random_device in the library. Disabling
+       this can be useful when building the library for platforms that don't have
+       a source of randomness, such as some embedded platforms. When this is not
+       supported, most of <random> will still be available, but std::random_device
+       will not." OFF)
+    option(LIBCXX_ENABLE_LOCALIZATION
+      "Whether to include support for localization in the library. Disabling
+       localization can be useful when porting to platforms that don't support
+       the C locale API (e.g. embedded). When localization is not supported,
+       several parts of the library will be disabled: <iostream>, <regex>, <locale>
+       will be completely unusable, and other parts may be only partly available." OFF)
+    option(LIBCXX_ENABLE_UNICODE
+      "Whether to include support for Unicode in the library. Disabling Unicode can
+       be useful when porting to platforms that don't support UTF-8 encoding (e.g.
+       embedded)." OFF)
+    option(LIBCXX_ENABLE_WIDE_CHARACTERS
+      "Whether to include support for wide characters in the library. Disabling
+       wide character support can be useful when porting to platforms that don't
+       support the C functionality for wide characters. When wide characters are
+       not supported, several parts of the library will be disabled, notably the
+       wide character specializations of std::basic_string." ON)
+    option(LIBCXX_ENABLE_INCOMPLETE_FEATURES
+        "Whether to enable support for incomplete library features. Incomplete features
+        are new library features under development. These features don't guarantee
+        ABI stability nor the quality of completed library features. Vendors
+        shipping the library may want to disable this option." OFF)
+
+    option(LIBCXX_INCLUDE_BENCHMARKS "Build the libc++ benchmarks and their dependencies" OFF)
+    option(LIBCXX_INCLUDE_DOCS "Build the libc++ documentation." OFF)
+    option(LIBCXX_USE_COMPILER_RT "Use compiler-rt instead of libgcc" ON)
+    option(LIBCXX_ENABLE_STATIC_ABI_LIBRARY
+      "Use a static copy of the ABI library when linking libc++.
+      This option cannot be used with LIBCXX_ENABLE_ABI_LINKER_SCRIPT." OFF)
+    option(LIBCXX_ENABLE_THREADS "Build libc++ with support for threads." OFF)
+    option(LIBCXX_ENABLE_MONOTONIC_CLOCK
+      "Build libc++ with support for a monotonic clock.
+      This option may only be set to OFF when LIBCXX_ENABLE_THREADS=OFF." OFF)
+    option(LIBCXX_CONFIGURE_IDE "Configure libcxx for use within an IDE" OFF)
+
+    option(LIBCXX_ENABLE_ABI_LINKER_SCRIPT "Use and install a linker script for the given ABI library" OFF)
+
+    add_subdirectory(${LLVM_PROJECT_PATH}/libcxx libcxx)
+
+    target_compile_definitions(cxx_static PRIVATE _LIBCPP_HAS_NO_LIBRARY_ALIGNED_ALLOCATION)
+
 
 endfunction()
