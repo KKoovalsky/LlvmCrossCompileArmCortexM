@@ -34,6 +34,7 @@ set(compile_cxx_flags "${basic_flags}")
 set(standard_libraries_dir "${ARM_GNU_TOOLCHAIN_PATH}/arm-none-eabi/lib/thumb/v7e-m+fp/hard/")
 string(CONCAT extra_linker_flags
     " -Wl,--gc-sections"
+    " -Wl,--target2=rel"
     " -L${standard_libraries_dir}"
     " -lc -lm")
 
