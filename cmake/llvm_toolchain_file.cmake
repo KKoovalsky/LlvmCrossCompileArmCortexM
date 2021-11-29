@@ -29,16 +29,7 @@ string(CONCAT basic_flags
 )
 
 set(compile_c_flags "${basic_flags}")
-
-set(gcc_cxx_system_include_dir "${ARM_GNU_TOOLCHAIN_PATH}/arm-none-eabi/include/c++/${ARM_GNU_TOOLCHAIN_GCC_VERSION}/")
-set(gcc_cxx_cpu_specific_system_include_dir "${gcc_cxx_system_include_dir}/arm-none-eabi/thumb/v7e-m+fp/hard/")
-string(CONCAT system_include_cxx_flags
-    " -isystem ${gcc_cxx_system_include_dir}"
-    " -isystem ${gcc_cxx_cpu_specific_system_include_dir}"
-)
-
-set(extra_cxx_flags "${system_include_cxx_flags}")
-set(compile_cxx_flags "${basic_flags} ${extra_cxx_flags}")
+set(compile_cxx_flags "${basic_flags}")
 
 set(standard_libraries_dir "${ARM_GNU_TOOLCHAIN_PATH}/arm-none-eabi/lib/thumb/v7e-m+fp/hard/")
 string(CONCAT extra_linker_flags
