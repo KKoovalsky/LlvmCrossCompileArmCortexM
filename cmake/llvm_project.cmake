@@ -83,5 +83,21 @@ function(EnableLibcxx)
 
     target_compile_definitions(cxx_static PRIVATE _LIBCPP_HAS_NO_LIBRARY_ALIGNED_ALLOCATION)
 
+endfunction()
+
+function(EnableLibcxxAbi)
+
+    option(LIBCXXABI_USE_COMPILER_RT "Use compiler-rt instead of libgcc" ON)
+    option(LIBCXXABI_ENABLE_THREADS "Build with threads enabled" OFF)
+    option(LIBCXXABI_INCLUDE_TESTS "Generate build targets for the libc++abi unit tests." OFF)
+
+    option(LIBCXXABI_ENABLE_SHARED "Build libc++abi as a shared library." OFF)
+    option(LIBCXXABI_BAREMETAL "Build libc++abi for baremetal targets." ON)
+    option(LIBCXXABI_SILENT_TERMINATE "Set this to make the terminate handler default to a silent alternative" ON)
+    option(LIBCXXABI_NON_DEMANGLING_TERMINATE "Set this to make the terminate handler avoid demangling" ON)
+
+    add_subdirectory(${LLVM_PROJECT_PATH}/libcxxabi libcxxabi)
+
+    target_compile_definitions(cxxabi_static PRIVATE _LIBCPP_HAS_NO_LIBRARY_ALIGNED_ALLOCATION)
 
 endfunction()
