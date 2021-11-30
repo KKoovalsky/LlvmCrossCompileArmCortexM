@@ -28,20 +28,9 @@ string(CONCAT basic_flags
     " -isystem ${gcc_c_system_include_dir}"
 )
 
-set(compile_c_flags "${basic_flags}")
-set(compile_cxx_flags "${basic_flags}")
-
-set(standard_libraries_dir "${ARM_GNU_TOOLCHAIN_PATH}/arm-none-eabi/lib/thumb/v7e-m+fp/hard/")
-string(CONCAT extra_linker_flags
-    " -Wl,--gc-sections"
-    " -Wl,--target2=rel"
-    " -L${standard_libraries_dir}"
-    " -lc -lm")
-
-set(CMAKE_C_FLAGS_INIT "${compile_c_flags}")
-set(CMAKE_CXX_FLAGS_INIT "${compile_cxx_flags}")
+set(CMAKE_C_FLAGS_INIT "${basic_flags}")
+set(CMAKE_CXX_FLAGS_INIT "${basic_flags}")
 set(CMAKE_ASM_FLAGS_INIT  "${basic_flags}")
-set(CMAKE_EXE_LINKER_FLAGS_INIT "${basic_flags} ${extra_linker_flags}")
 
 set(CMAKE_C_COMPILER_TARGET arm-none-eabi)
 set(CMAKE_CXX_COMPILER_TARGET arm-none-eabi)
