@@ -4,8 +4,8 @@ function(ProvideLlvm)
 
     FetchContent_Declare(
         Llvm
-        URL https://github.com/llvm/llvm-project/releases/download/llvmorg-13.0.0/clang+llvm-13.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
-        URL_HASH SHA256=2c2fb857af97f41a5032e9ecadf7f78d3eff389a5cd3c9ec620d24f134ceb3c8
+        URL https://github.com/llvm/llvm-project/releases/download/llvmorg-14.0.0/clang+llvm-14.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
+        URL_HASH SHA256=61582215dafafb7b576ea30cc136be92c877ba1f1c31ddbbd372d6d65622fef5
     )
 
     FetchContent_MakeAvailable(Llvm)
@@ -40,8 +40,8 @@ function(ProvideLlvmProject)
 
     FetchContent_Declare(
         LlvmProject
-        GIT_REPOSITORY  https://github.com/llvm/llvm-project.git
-        GIT_TAG         1ed5a90f70eb04997a27026dfc2d9cae1d8cfa75
+        URL  https://github.com/llvm/llvm-project/releases/download/llvmorg-14.0.0/llvm-project-14.0.0.src.tar.xz
+        URL_HASH SHA256=35ce9edbc8f774fe07c8f4acdf89ec8ac695c8016c165dd86b8d10e7cba07e23
     )
 
     FetchContent_MakeAvailable(LlvmProject)
