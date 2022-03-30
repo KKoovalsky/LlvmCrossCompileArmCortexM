@@ -21,6 +21,7 @@ set(CMAKE_NM ${CLANG_COMPILER_PATH_PREFIX}/llvm-nm)
 string(CONCAT basic_flags
     " -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16"
     " -fdata-sections -ffunction-sections"
+    # Those flags are needed to use newlib from the ARM GNU GCC toolchain
     " --sysroot=${ARM_GNU_TOOLCHAIN_PATH}/arm-none-eabi"
     " -isystem ${ARM_GNU_TOOLCHAIN_PATH}/arm-none-eabi/include"
 )
