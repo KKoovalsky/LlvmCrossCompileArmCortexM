@@ -31,8 +31,6 @@ function(ProvideArmGnuToolchain)
     FetchContent_GetProperties(ArmGnuToolchain SOURCE_DIR ARM_GNU_TOOLCHAIN_SOURCE_DIR)
 
     set(ARM_GNU_TOOLCHAIN_PATH "${ARM_GNU_TOOLCHAIN_SOURCE_DIR}" CACHE PATH "Path to the ARM GNU toolchain")
-    set(ARM_GNU_TOOLCHAIN_SYSROOT "${ARM_GNU_TOOLCHAIN_PATH}/sysroot" CACHE PATH "Path to the ARM GNU toolchain sysroot")
-    set(ARM_GNU_TOOLCHAIN_GCC_VERSION "10.3.1" CACHE STRING "Version of the GCC bundled with the ARM GNU toolchain")
 
 endfunction()
 

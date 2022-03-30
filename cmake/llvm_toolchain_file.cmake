@@ -18,20 +18,17 @@ set(CMAKE_STRIP ${CLANG_COMPILER_PATH_PREFIX}/llvm-strip)
 set(CMAKE_SIZE_BIN ${CLANG_COMPILER_PATH_PREFIX}/llvm-size)
 set(CMAKE_NM ${CLANG_COMPILER_PATH_PREFIX}/llvm-nm)
 
-set(gcc_c_system_include_dir "${ARM_GNU_TOOLCHAIN_PATH}/arm-none-eabi/include/")
-
 string(CONCAT basic_flags
     " -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16"
-    " -nodefaultlibs"
-    " --sysroot=${ARM_GNU_TOOLCHAIN_SYSROOT}"
     " -fdata-sections -ffunction-sections"
-    " -isystem ${gcc_c_system_include_dir}"
+    " --sysroot=${ARM_GNU_TOOLCHAIN_PATH}/arm-none-eabi"
+    " -isystem ${ARM_GNU_TOOLCHAIN_PATH}/arm-none-eabi/include"
 )
 
 set(CMAKE_C_FLAGS_INIT "${basic_flags}")
 set(CMAKE_CXX_FLAGS_INIT "${basic_flags}")
 set(CMAKE_ASM_FLAGS_INIT  "${basic_flags}")
 
-set(CMAKE_C_COMPILER_TARGET arm-none-eabi)
-set(CMAKE_CXX_COMPILER_TARGET arm-none-eabi)
-set(CMAKE_ASM_COMPILER_TARGET arm-none-eabi)
+set(CMAKE_C_COMPILER_TARGET armv7em-none-eabi)
+set(CMAKE_CXX_COMPILER_TARGET armv7em-none-eabi)
+set(CMAKE_ASM_COMPILER_TARGET armv7em-none-eabi)
