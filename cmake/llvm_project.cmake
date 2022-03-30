@@ -7,6 +7,15 @@ function(EnableCompilerRt)
 
 endfunction()
 
+function(EnableLibc)
+
+    set(LIBC_COMPILE_OPTIONS_DEFAULT "-mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16" CACHE STRING 
+        "Architecture to tell clang to optimize for (e.g. -march=... or -mcpu=...)")
+
+    add_subdirectory(${LLVM_PROJECT_PATH}/libc libc)
+
+endfunction()
+
 function(EnableLibunwind)
 
     option(LIBUNWIND_ENABLE_SHARED "Build libunwind as a shared library." OFF)
