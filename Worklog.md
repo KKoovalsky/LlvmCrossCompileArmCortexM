@@ -4,7 +4,7 @@
 
 Debugging cross-compiled libraries with Aura:
 
-* In `test_serial_logger` binary, compiled with `clang_with_cross_compiled_libs_device_toolchain.cmake` and Debug 
+1. In `test_serial_logger` binary, compiled with `clang_with_cross_compiled_libs_device_toolchain.cmake` and Debug 
 configuration, binary takes a lot of space because of the references to `fprintf` in:
 
 ```
@@ -51,3 +51,6 @@ Example:
     | grep 'bl.*<fprintf>' | cut -d':' -f1 | \
     ../common_dependencies/llvm-src/bin/llvm-addr2line -f -e tests/device/test_serial_logger/test_serial_logger
 ```
+
+2. Problem: `__assert_func()` is somehow pulled to Clang Release build, even though everywhere `-DNDEBUG` is used, 
+what shall basically strip off `assert()` function. `nm` shows that `libc++abi` and `libunwind` reference `assert()`.
