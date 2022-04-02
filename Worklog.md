@@ -53,4 +53,10 @@ Example:
 ```
 
 2. Problem: `__assert_func()` is somehow pulled to Clang Release build, even though everywhere `-DNDEBUG` is used, 
-what shall basically strip off `assert()` function. `nm` shows that `libc++abi` and `libunwind` reference `assert()`.
+what shall basically strip off `assert()` function. `nm` shows that `libc++abi` and `libunwind` reference `__assert_func()`.
+
+Solution: it was due to `LIB*_ENABLE_ASSERTIONS` CMake option set to `ON`.
+
+## 02.04.2022
+
+* `build_llvm14` was built without `-fexceptions`, `-frtti`, but I rebuild it with those flags.
