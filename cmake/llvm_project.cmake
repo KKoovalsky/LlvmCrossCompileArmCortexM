@@ -9,6 +9,7 @@ endfunction()
 
 function(EnableLibunwind)
 
+    option(LIBUNWIND_ENABLE_ASSERTIONS "Enable assertions independent of build mode." OFF)
     option(LIBUNWIND_ENABLE_SHARED "Build libunwind as a shared library." OFF)
     option(LIBUNWIND_ENABLE_CROSS_UNWINDING "Enable cross-platform unwinding support." ON)
     option(LIBUNWIND_ENABLE_THREADS "Build libunwind with threading support." OFF)
@@ -24,6 +25,7 @@ endfunction()
 
 function(EnableLibcxx)
 
+    option(LIBCXX_ENABLE_ASSERTIONS "Enable assertions independent of build mode." OFF)
     option(LIBCXX_ENABLE_SHARED "Build libc++ as a shared library." OFF)
     option(LIBCXX_ENABLE_EXPERIMENTAL_LIBRARY "Build libc++experimental.a" OFF)
     option(LIBCXX_ENABLE_FILESYSTEM "Build filesystem as part of the main libc++ library" OFF)
@@ -78,6 +80,7 @@ endfunction()
 
 function(EnableLibcxxAbi)
 
+    option(LIBCXXABI_ENABLE_ASSERTIONS "Enable assertions independent of build mode." OFF)
     option(LIBCXXABI_USE_COMPILER_RT "Use compiler-rt instead of libgcc" ON)
     option(LIBCXXABI_ENABLE_THREADS "Build with threads enabled" OFF)
     option(LIBCXXABI_INCLUDE_TESTS "Generate build targets for the libc++abi unit tests." OFF)
