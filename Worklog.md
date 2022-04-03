@@ -59,4 +59,13 @@ Solution: it was due to `LIB*_ENABLE_ASSERTIONS` CMake option set to `ON`.
 
 ## 02.04.2022
 
-* `build_llvm14` was built without `-fexceptions`, `-frtti`, but I rebuild it with those flags.
+* I have tested Aura with the cross compiled LLVM libs. Everything seems to work fine, except the exceptions. 
+No exeption is properly caught. The test `logs_uncaught_exception` fails with a HardFault. I will try to resolve it.
+* `build_llvm14` was built without `-fexceptions`, `-frtti`, but I rebuild it with those flags. It seems that it didn't
+affect anything, though.
+
+## 03.04.2022
+
+* I have fixed the issues by using the `-Wl,target2=rel` flag, when cross-compiling Aura with the libraries from this
+project.
+
