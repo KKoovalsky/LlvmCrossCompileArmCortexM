@@ -55,7 +55,7 @@ The standard CMake approach applies here. Note that, when using a custom toolcha
 
 ## TODO
 
-1. Add license.
+1. Add license - research licensing when downloading LLVM Project as a dependency.
 7. Document what toolchains and versions are used.
 9. Add option `BUILD_COMPILER_RT_ONLY` to disable C++ libraries building.
 10. Build without exceptions, and support every build option for ad.4.
