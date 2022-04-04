@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.21)
-
-set(CMAKE_BUILD_TYPE "Release" CACHE STRING "CMake build configuration")
-
+set(CMAKE_BUILD_TYPE "Release" CACHE STRING "CMake build configuration") 
 file(REAL_PATH ${CMAKE_CURRENT_LIST_DIR}/../ PROJECT_ROOT_DIR)
 
 include(cmake/dependencies.cmake)

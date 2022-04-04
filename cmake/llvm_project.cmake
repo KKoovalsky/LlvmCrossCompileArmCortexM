@@ -3,6 +3,10 @@ function(EnableCompilerRt)
     set(COMPILER_RT_BAREMETAL_BUILD ON CACHE BOOL "")
     set(COMPILER_RT_DEFAULT_TARGET_ONLY ON CACHE BOOL "Builds builtins only for the default target (one architecture)")
 
+    # Normally it is "lib/generic", but to provide flat directory with libs (to have them in the same directory),
+    # we change it to 'lib'.
+    set(COMPILER_RT_INSTALL_LIBRARY_DIR "lib" CACHE PATH "compiler-rt install library path")
+
     add_subdirectory(${LLVM_PROJECT_PATH}/compiler-rt compiler-rt)
 
 endfunction()
