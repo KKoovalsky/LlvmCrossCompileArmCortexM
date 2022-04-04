@@ -23,11 +23,8 @@ set(CMAKE_C_EXTENSIONS ON)
 ProvideLlvmProject()
 
 include(cmake/llvm_project.cmake)
-include(cmake/tweaks.cmake)
 
 EnableCompilerRt()
 EnableLibcxx()
 EnableLibcxxAbi()
 EnableLibunwind()
-
-UseAlternativeFprintf()

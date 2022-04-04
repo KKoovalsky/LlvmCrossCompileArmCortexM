@@ -69,3 +69,26 @@ affect anything, though.
 * I have fixed the issues by using the `-Wl,target2=rel` flag, when cross-compiling Aura with the libraries from this
 project.
 
+## 04.04.2022
+
+* `fprintf` optimization is irrelevant:
+
+Irrelevant stuff from [TODOs](README.md#todo):
+
+> 2. Force linking weak `fprintf_alternative` and `vfprintf_alternative` for each C++ library, by using `target_sources` 
+> (e.g. `OBJECT` library). To do that this peace of code is needed:
+> 
+>       target_compile_definitions(cxx_static PRIVATE fprintf=fprintf_alternative)
+>       target_compile_definitions(cxxabi_static PRIVATE fprintf=fprintf_alternative)
+>       target_compile_definitions(unwind_static PRIVATE fprintf=fprintf_alternative)
+>       
+>       target_compile_definitions(cxx_static PRIVATE vfprintf=vfprintf_alternative)
+>       target_compile_definitions(cxxabi_static PRIVATE vfprintf=vfprintf_alternative)
+>       target_compile_definitions(unwind_static PRIVATE vfprintf=vfprintf_alternative)
+> 
+> * Document why, and how to fix it.
+> * Add CMake option to control that.
+
+Why this is irrelevant: I tested Aura Release build **without**: `fprintf` renaming to `fprintf_alternative`, nor
+using weak linking to `fprintf_alternative`, and `fprintf` is not included in the binary. It means that the calls must 
+have been added to the libc++ and libc++abi libraries because of the assertions enabled.

@@ -5,22 +5,6 @@ Cross-compiled and fine-tuned LLVM libraries ...
 ## TODO
 
 1. Add license.
-2. Force linking weak `fprintf_alternative` and `vfprintf_alternative` for each C++ library, by using `target_sources` 
-(e.g. `OBJECT` library). To do that this peace of code is needed:
-
-```
-target_compile_definitions(cxx_static PRIVATE fprintf=fprintf_alternative)
-target_compile_definitions(cxxabi_static PRIVATE fprintf=fprintf_alternative)
-target_compile_definitions(unwind_static PRIVATE fprintf=fprintf_alternative)
-
-target_compile_definitions(cxx_static PRIVATE vfprintf=vfprintf_alternative)
-target_compile_definitions(cxxabi_static PRIVATE vfprintf=vfprintf_alternative)
-target_compile_definitions(unwind_static PRIVATE vfprintf=vfprintf_alternative)
-```
-
-* Document why, and how to fix it.
-* Add CMake option to control that.
-
 3. `-fexceptions -frtti` are not needed, in the toolchain file.
 4. Three build options: `Release`, `Debug`, `MinSizeRel`.
 5. Change `MinSizeRel` to use `-Oz` flag, in the default toolchain file.
