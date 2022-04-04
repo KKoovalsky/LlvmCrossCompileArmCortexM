@@ -5,7 +5,6 @@ Cross-compiled and fine-tuned LLVM libraries ...
 ## TODO
 
 1. Add license.
-3. `-fexceptions -frtti` are not needed, in the toolchain file.
 4. Three build options: `Release`, `Debug`, `MinSizeRel`.
 5. Change `MinSizeRel` to use `-Oz` flag, in the default toolchain file.
 6. Document replacing LLVM, ARM GNU Toolchain and LLVM Project using `FETCH_CONTENT_SOURCE_DIR_*`.
