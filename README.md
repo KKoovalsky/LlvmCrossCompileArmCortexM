@@ -73,3 +73,5 @@ option, or automatically.
 19. Document why `-Wl,--target2=rel` is needed. Link to ARM ABI documentation.
 20. Where is `new` with `align` called from within the C++ libraries?
 21. Document size of the binary similar to one compiled with ARM GNU Toolchain (a bit higher).
+22. Find a way to override `CPACK_SYSTEM_NAME` from the target architecture, uses 'Generic' even when changing
+`CPACK_SYSTEM_NAME`. Create default `CPACK_*` config.
