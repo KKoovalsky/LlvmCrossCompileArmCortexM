@@ -31,4 +31,5 @@ option, or automatically.
 17. Document using different toolchain files.
 18. Document how to use those libs from a compiler/linker command line or a `CMAKE_TOOLCHAIN_FILE`.
 19. Document why `-Wl,--target2=rel` is needed. Link to ARM ABI documentation.
-
+20. Where is `new` with `align` called from within the C++ libraries?
+21. Document size of the binary similar to one compiled with ARM GNU Toolchain (a bit higher).
