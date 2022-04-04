@@ -6,7 +6,6 @@ Cross-compiled and fine-tuned LLVM libraries ...
 
 1. Add license.
 4. Three build options: `Release`, `Debug`, `MinSizeRel`.
-5. Change `MinSizeRel` to use `-Oz` flag, in the default toolchain file.
 6. Document replacing LLVM, ARM GNU Toolchain and LLVM Project using `FETCH_CONTENT_SOURCE_DIR_*`.
 7. Document what toolchains and versions are used.
 8. According to ad.4, options we have:
