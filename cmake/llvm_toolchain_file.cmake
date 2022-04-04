@@ -26,8 +26,11 @@ string(CONCAT basic_flags
     " -isystem ${ARM_GNU_TOOLCHAIN_PATH}/arm-none-eabi/include"
 )
 
+string(CONCAT extra_cxx_flags
+    " -fexceptions -frtti"
+)
 set(CMAKE_C_FLAGS_INIT "${basic_flags}")
-set(CMAKE_CXX_FLAGS_INIT "${basic_flags}")
+set(CMAKE_CXX_FLAGS_INIT "${basic_flags} ${extra_cxx_flags}")
 set(CMAKE_ASM_FLAGS_INIT  "${basic_flags}")
 
 set(CMAKE_C_COMPILER_TARGET armv7em-none-eabi)
