@@ -75,3 +75,8 @@ option, or automatically.
 21. Document size of the binary similar to one compiled with ARM GNU Toolchain (a bit higher).
 22. Find a way to override `CPACK_SYSTEM_NAME` from the target architecture, uses 'Generic' even when changing
 `CPACK_SYSTEM_NAME`. Create default `CPACK_*` config.
+23. Create CPack components (`cpack_add_component`): C++ libs, clang-rt, C libs from the ARM GNU Toolchain. 
+Beware: `CPACK_ARCHIVE_COMPONENT_INSTALL`!
+24. CPack with multiple build directories setup can be used to pack artifacts from builds for various architectures.
+25. For each config append config name to the CPack-ed tgz file.
+26. Install licenses of LLVM Project, and ARM GNU Toolchain, and this project when CPack-ing.
