@@ -144,8 +144,7 @@ experimental library, ... Check out the main `CMakeLists.txt` of the subprojects
 
 ## TODO
 
-9. Add option `BUILD_COMPILER_RT_ONLY` to disable C++ libraries building.
-1. Add license - research licensing when downloading LLVM Project as a dependency.
+1. Bundle license with the archive.
 18. Document how to use those libs from a compiler/linker command line or a `CMAKE_TOOLCHAIN_FILE`.
 19. Document why `-Wl,--target2=rel` is needed. Link to ARM ABI documentation.
 21. Document size of the binary similar to one compiled with ARM GNU Toolchain (a bit higher).
@@ -163,5 +162,5 @@ Automatically it can be done with:
 23. Create CPack components (`cpack_add_component`): C++ libs, clang-rt, C libs from the ARM GNU Toolchain. 
 Beware: `CPACK_ARCHIVE_COMPONENT_INSTALL`!
 24. CPack with multiple build directories setup can be used to pack artifacts from builds for various architectures.
-26. Install licenses of LLVM Project, and ARM GNU Toolchain, and this project when CPack-ing.
+26. Install license of ARM GNU Toolchain when CPack-ing.
 27. Support `-frtti` on demand.
