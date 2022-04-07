@@ -1,6 +1,17 @@
-# clang-rt, libc++, libc++abi and libunwind, cross-compiled for ARM bare-metal
+# compiler-rt, libc++, libc++abi and libunwind, cross-compiled for ARM baremetal
 
-Cross-compiled and fine-tuned LLVM libraries ...
+Cross-compiled and fine-tuned LLVM libraries for ARM baremetal targets. The targeted systems are 
+**arm\*-none-eabi** triplets, which don't run an OS (but can run e.g. an RTOS), thus, do not support threads, 
+monotonic clock, filesystem, etc. Those are **ARM Cortex M** MCUs.
+
+This project can compile:
+
+* compiler-rt
+* libc++
+* libc++abi
+* libunwind
+
+Exceptions are supported.
 
 ## Building
 
