@@ -41,6 +41,14 @@ The resulting archive name will be: _<ProjectName>-<Version>-<Target>-<Config>_,
 
 > LlvmArmBaremetal-0.1.1-armv7em-Debug.tar.gz
 
+---
+
+The currently used versions are:
+
+* LLVM+Clang: 14.0.0
+* LLVM Project: 14.0.0
+* ARM GNU Toolchain: 10.3-2021.10
+
 ## Tweaking
 
 ### Changing paths to the toolchains and LLVM project
@@ -65,28 +73,29 @@ The standard CMake approach applies here. Note that, when using a custom toolcha
 
 ## TODO
 
-1. Add license - research licensing when downloading LLVM Project as a dependency.
-7. Document what toolchains and versions are used.
-9. Add option `BUILD_COMPILER_RT_ONLY` to disable C++ libraries building.
+20. Where is `new` with `align` called from within the C++ libraries?
+16. Implement weak `posix_memalign` or `new/delete` with align parameter.
 10. Build without exceptions, and support every build option for ad.4.
 11. Document that CMake options from the LLVM project may be overriden.
 12. This set of options: `-mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16`, shall be a CMake cache variable.
-13. Pack all includes to `include` and libs to `lib` as an arifact. Use `CPack` for that?
+15. `CMAKE_*_COMPILER_TARGET` must also be changed accordingly.
+9. Add option `BUILD_COMPILER_RT_ONLY` to disable C++ libraries building.
+1. Add license - research licensing when downloading LLVM Project as a dependency.
+18. Document how to use those libs from a compiler/linker command line or a `CMAKE_TOOLCHAIN_FILE`.
+19. Document why `-Wl,--target2=rel` is needed. Link to ARM ABI documentation.
+21. Document size of the binary similar to one compiled with ARM GNU Toolchain (a bit higher).
 14. Include appropriate `libc`, `libm`, `libnosys`, `libc-nano`, `libg`, `librdimon.a`, `librdimon_nano.a`, 
 `librdimon-v2m.a`, `librdpmon.a` for specified architecture AND include headers, from the ARM GNU Toolchain.
  One needs to translate the flags from ad.12 to proper
 directory in the ARM GNU Toolchain, e.g.: `thumb/v7e-m+fp/hard`. It can be done either by the user, using a CMake
 option, or automatically.
-15. `CMAKE_*_COMPILER_TARGET` must also be changed accordingly.
-16. Implement weak `posix_memalign` or `new/delete` with align parameter.
-18. Document how to use those libs from a compiler/linker command line or a `CMAKE_TOOLCHAIN_FILE`.
-19. Document why `-Wl,--target2=rel` is needed. Link to ARM ABI documentation.
-20. Where is `new` with `align` called from within the C++ libraries?
-21. Document size of the binary similar to one compiled with ARM GNU Toolchain (a bit higher).
-22. Find a way to override `CPACK_SYSTEM_NAME` from the target architecture, uses 'Generic' even when changing
-`CPACK_SYSTEM_NAME`. Create default `CPACK_*` config.
+Automatically it can be done with:
+
+```
+./arm-none-eabi-gcc -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -print-file-name=libc.a
+```
+
 23. Create CPack components (`cpack_add_component`): C++ libs, clang-rt, C libs from the ARM GNU Toolchain. 
 Beware: `CPACK_ARCHIVE_COMPONENT_INSTALL`!
 24. CPack with multiple build directories setup can be used to pack artifacts from builds for various architectures.
-25. For each config append config name to the CPack-ed tgz file.
 26. Install licenses of LLVM Project, and ARM GNU Toolchain, and this project when CPack-ing.
