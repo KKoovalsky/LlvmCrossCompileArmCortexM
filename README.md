@@ -4,14 +4,28 @@ Cross-compiled and fine-tuned LLVM libraries ...
 
 ## Building
 
-Currently, by default, Ubuntu is supported for building. To tweak it for your host machine, read on to tweak the build.
+Currently, by default, Ubuntu is supported for building. To tweak it for your host machine, read on.
 
-Building the library in multiple configurations is recommended, thus, use Ninja-Multi Config CMake generator:
+There are two major CMake CACHE variables which define the target for which the library will be built:
+
+* `LLVM_BAREMETAL_ARM_TARGET_COMPILE_FLAGS` - by default equal to: 
+`-mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16`, what, basically, means that by default ARM Cortex M4 MCU,
+with floating point support, is targeted. Change it to the corresponding target architecture, you want the libs be
+compiled for.
+* `LLVM_BAREMETAL_ARM_COMPILER_TARGET` - by default equal to `armv7em-none-eabi`; it corresponds to the default flags
+for the first variable mentioned. It should be `armv6m-none-eabi`, `armv7m-none-eabi`, `armv7em-none-eabi`, ...
+
+Building the library in multiple configurations is recommended, thus, use the Ninja-Multi Config CMake generator:
 
 ```
 mkdir build
 cd build
-cmake -G"Ninja Multi-Config" -DCMAKE_CONFIGURATION_TYPES="Release;Debug;MinSizeRel" ..
+cmake \
+    -G"Ninja Multi-Config" \
+    -DCMAKE_CONFIGURATION_TYPES="Release;Debug;MinSizeRel" \
+    -DLLVM_BAREMETAL_ARM_TARGET_COMPILE_FLAGS="-mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16" \
+    -DLLVM_BAREMETAL_ARM_COMPILER_TARGET="armv7em-none-eabi"
+    ..
 cmake --build . --config Release
 cmake --build . --config Debug
 cmake --build . --config MinSizeRel
@@ -75,8 +89,6 @@ The standard CMake approach applies here. Note that, when using a custom toolcha
 
 10. Build without exceptions, and support every build option for ad.4.
 11. Document that CMake options from the LLVM project may be overriden.
-12. This set of options: `-mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16`, shall be a CMake cache variable.
-15. `CMAKE_*_COMPILER_TARGET` must also be changed accordingly.
 9. Add option `BUILD_COMPILER_RT_ONLY` to disable C++ libraries building.
 1. Add license - research licensing when downloading LLVM Project as a dependency.
 18. Document how to use those libs from a compiler/linker command line or a `CMAKE_TOOLCHAIN_FILE`.
