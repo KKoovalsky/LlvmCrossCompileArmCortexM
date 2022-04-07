@@ -2,7 +2,7 @@
 
 Cross-compiled and fine-tuned LLVM libraries for ARM baremetal targets. The targeted systems are 
 **arm\*-none-eabi** triplets, which don't run an OS (but can run e.g. an RTOS), thus, do not support threads, 
-monotonic clock, filesystem, etc. Those are **ARM Cortex M** MCUs.
+monotonic clock, filesystem, random device etc. Those are **ARM Cortex M** MCUs.
 
 This project can compile:
 
@@ -103,9 +103,14 @@ To disable exceptions, run the CMake configure and generate step, with:
 * `LIBCXXABI_ENABLE_EXCEPTIONS=OFF`
 * `LIBCXX_ENABLE_EXCEPTIONS=OFF`
 
+### Customizing LLVM project build 
+
+The LLVM Project is built using CMake, and the main `CMakeLists.txt` for each of the subproject has multiple
+CMake options and cache variables, which affect the build. One can e.g. turn on assertions, include docs, build
+experimental library, ... Check out the main `CMakeLists.txt` of the subprojects for details.
+
 ## TODO
 
-11. Document that CMake options from the LLVM project may be overriden.
 9. Add option `BUILD_COMPILER_RT_ONLY` to disable C++ libraries building.
 1. Add license - research licensing when downloading LLVM Project as a dependency.
 18. Document how to use those libs from a compiler/linker command line or a `CMAKE_TOOLCHAIN_FILE`.
