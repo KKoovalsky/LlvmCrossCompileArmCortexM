@@ -73,8 +73,6 @@ The standard CMake approach applies here. Note that, when using a custom toolcha
 
 ## TODO
 
-20. Where is `new` with `align` called from within the C++ libraries?
-16. Implement weak `posix_memalign` or `new/delete` with align parameter.
 10. Build without exceptions, and support every build option for ad.4.
 11. Document that CMake options from the LLVM project may be overriden.
 12. This set of options: `-mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16`, shall be a CMake cache variable.
