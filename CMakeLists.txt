@@ -15,6 +15,7 @@ project(LlvmArmBaremetal
 include(cmake/utils.cmake)
 
 ConfigurePackaging()
+AddPackagingTarget()
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)

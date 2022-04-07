@@ -15,6 +15,11 @@ cmake -G"Ninja Multi-Config" -DCMAKE_CONFIGURATION_TYPES="Release;Debug;MinSizeR
 cmake --build . --config Release
 cmake --build . --config Debug
 cmake --build . --config MinSizeRel
+
+# To pack the corresponding outputs.
+cmake --build . --target pack --config Release
+cmake --build . --target pack --config Debug
+cmake --build . --target pack --config MinSizeRel
 ```
 
 By default:
@@ -30,6 +35,11 @@ because default `clang` build is assumed.
 3. The `MinSizeRel` config option uses `-Oz` flag to optimize for size even more. This cache variable is set inside
 the default toolchain file. If another toolchain file is used, then this `MinSizeRel` will use the standard
 default value, defined by CMake vendors.
+
+4. The `pack` target will pack all the libraries to a `tar.gz` archive, for the corresponding configuration.
+The resulting archive name will be: _<ProjectName>-<Version>-<Target>-<Config>_, e.g.:
+
+> LlvmArmBaremetal-0.1.1-armv7em-Debug.tar.gz
 
 ## Tweaking
 
