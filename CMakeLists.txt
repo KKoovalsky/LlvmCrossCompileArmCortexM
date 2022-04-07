@@ -10,7 +10,7 @@ set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_LIST_DIR}/cmake/llvm_toolchain_file.cma
 
 project(LlvmArmBaremetal 
     VERSION 0.1.1
-    LANGUAGES CXX C ASM)
+    LANGUAGES CXX C)
 
 include(cmake/utils.cmake)
 
