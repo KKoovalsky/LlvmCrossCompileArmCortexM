@@ -1,4 +1,4 @@
-# compiler-rt, libc++, libc++abi and libunwind, cross-compiled for ARM baremetal
+# compiler-rt, libc++, libc++abi and libunwind, cross-compiled for ARM baremetal (ARM Cortex M)
 
 Cross-compiled and fine-tuned LLVM libraries for ARM baremetal targets. The targeted systems are 
 **arm\*-none-eabi** triplets, which don't run an OS (but can run e.g. an RTOS), thus, do not support threads, 
