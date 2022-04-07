@@ -11,7 +11,7 @@ This project can compile:
 * libc++abi
 * libunwind
 
-Exceptions are supported.
+Exceptions are supported by default, but can be turned off to spare the final binary size.
 
 ## Building
 
@@ -96,9 +96,15 @@ If your host machine is not Ubuntu 18+, you must provide proper LLVM + Clang sui
 The standard CMake approach applies here. Note that, when using a custom toolchain file, override the
 `FETCH_CONTENT_SOURCE_DIR_LLVM` to a dummy value, to prevent CMake from downloading LLVM + Clang.
 
+### Disabling exceptions
+
+To disable exceptions, run the CMake configure and generate step, with:
+
+* `LIBCXXABI_ENABLE_EXCEPTIONS=OFF`
+* `LIBCXX_ENABLE_EXCEPTIONS=OFF`
+
 ## TODO
 
-10. Build without exceptions, and support every build option for ad.4.
 11. Document that CMake options from the LLVM project may be overriden.
 9. Add option `BUILD_COMPILER_RT_ONLY` to disable C++ libraries building.
 1. Add license - research licensing when downloading LLVM Project as a dependency.
