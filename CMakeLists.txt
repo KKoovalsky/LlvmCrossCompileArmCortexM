@@ -29,7 +29,14 @@ ProvideLlvmProject()
 
 include(cmake/llvm_project.cmake)
 
+option(LLVM_ARM_BAREMETAL_BUILD_COMPILER_RT_ONLY 
+    "If set to ON, will build only the compiler-rt, otherwise it will also build libc++, libc++abi and libunwind"
+    OFF)
+
 EnableCompilerRt()
-EnableLibcxx()
-EnableLibcxxAbi()
-EnableLibunwind()
+
+if(NOT LLVM_ARM_BAREMETAL_BUILD_COMPILER_RT_ONLY)
+    EnableLibcxx()
+    EnableLibcxxAbi()
+    EnableLibunwind()
+endif()

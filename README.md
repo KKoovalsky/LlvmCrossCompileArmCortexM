@@ -132,6 +132,10 @@ To disable exceptions, run the CMake configure and generate step, with:
 * `LIBCXXABI_ENABLE_EXCEPTIONS=OFF`
 * `LIBCXX_ENABLE_EXCEPTIONS=OFF`
 
+### Building compiler-rt only
+
+Set the cache variable `LLVM_ARM_BAREMETAL_BUILD_COMPILER_RT_ONLY` to `ON`. It is set to `OFF` by default.
+
 ### Customizing LLVM project build 
 
 The LLVM Project is built using CMake, and the main `CMakeLists.txt` for each of the subproject has multiple
