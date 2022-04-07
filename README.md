@@ -26,7 +26,34 @@ compiled for.
 * `LLVM_BAREMETAL_ARM_COMPILER_TARGET` - by default equal to `armv7em-none-eabi`; it corresponds to the default flags
 for the first variable mentioned. It should be `armv6m-none-eabi`, `armv7m-none-eabi`, `armv7em-none-eabi`, ...
 
-Building the library in multiple configurations is recommended, thus, use the Ninja-Multi Config CMake generator:
+### Basic single config building
+
+Single config building is good when installing libraries built with just a single configuration.
+
+```
+mkdir build_single_config
+cd build_single_config
+cmake \
+    -G"Unix Makefiles" \
+    -DCMAKE_BUILD_TYPE=MinSizeRel \
+    -DLLVM_BAREMETAL_ARM_TARGET_COMPILE_FLAGS="-mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16" \
+    -DLLVM_BAREMETAL_ARM_COMPILER_TARGET="armv7em-none-eabi"
+    ..
+
+# Provide the path where to install the libraries
+cmake -DCMAKE_INSTALL_PREFIX=/where/to/install/the/libraries ..
+cmake --build . 
+cmake --install . 
+
+# One can also pack the resulting build outputs. See below to learn what is the result of this command.
+cmake --build . --target pack
+```
+
+### Multi-config build
+
+Building the library in multiple configurations is good, when bundling and deploying. This is also useful for
+creating artifacts, later to upload them, or to have Release-built packages for "normal" work (aka, Release firmware),
+but still have the library with Debug symbols by hand.
 
 ```
 mkdir build
@@ -46,6 +73,8 @@ cmake --build . --target pack --config Release
 cmake --build . --target pack --config Debug
 cmake --build . --target pack --config MinSizeRel
 ```
+
+### Build process explanation
 
 By default:
 
