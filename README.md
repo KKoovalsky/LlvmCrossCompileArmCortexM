@@ -144,10 +144,13 @@ experimental library, ... Check out the main `CMakeLists.txt` of the subprojects
 
 ## TODO
 
-1. Bundle license with the archive.
+1. Bundle license with the archive (use `install` command).
 18. Document how to use those libs from a compiler/linker command line or a `CMAKE_TOOLCHAIN_FILE`.
 19. Document why `-Wl,--target2=rel` is needed. Link to ARM ABI documentation.
 21. Document size of the binary similar to one compiled with ARM GNU Toolchain (a bit higher).
+28. Add 'Downloads' to GitHub with the library built for `armv7em`, all three configurations, with and without 
+exceptions.
+
 14. Include appropriate `libc`, `libm`, `libnosys`, `libc-nano`, `libg`, `librdimon.a`, `librdimon_nano.a`, 
 `librdimon-v2m.a`, `librdpmon.a` for specified architecture AND include headers, from the ARM GNU Toolchain.
  One needs to translate the flags from ad.12 to proper
