@@ -120,3 +120,4 @@ Automatically it can be done with:
 Beware: `CPACK_ARCHIVE_COMPONENT_INSTALL`!
 24. CPack with multiple build directories setup can be used to pack artifacts from builds for various architectures.
 26. Install licenses of LLVM Project, and ARM GNU Toolchain, and this project when CPack-ing.
+27. Support `-frtti` on demand.
