@@ -9,6 +9,9 @@ function(EnableCompilerRt)
 
     add_subdirectory(${LLVM_PROJECT_PATH}/compiler-rt compiler-rt)
 
+    install(FILES ${LLVM_PROJECT_PATH}/compiler-rt/LICENSE.TXT
+            DESTINATION licenses/compiler-rt)
+
 endfunction()
 
 function(EnableLibunwind)
@@ -24,6 +27,9 @@ function(EnableLibunwind)
     option(LIBUNWIND_REMEMBER_HEAP_ALLOC "Use heap instead of the stack for .cfi_remember_state." ON)
 
     add_subdirectory(${LLVM_PROJECT_PATH}/libunwind libunwind)
+
+    install(FILES ${LLVM_PROJECT_PATH}/libunwind/LICENSE.TXT
+            DESTINATION licenses/libunwind)
 
 endfunction()
 
@@ -80,6 +86,9 @@ function(EnableLibcxx)
 
     target_compile_definitions(cxx_static PRIVATE _LIBCPP_HAS_NO_LIBRARY_ALIGNED_ALLOCATION)
 
+    install(FILES ${LLVM_PROJECT_PATH}/libcxx/LICENSE.TXT
+            DESTINATION licenses/libcxx)
+
 endfunction()
 
 function(EnableLibcxxAbi)
@@ -97,5 +106,8 @@ function(EnableLibcxxAbi)
     add_subdirectory(${LLVM_PROJECT_PATH}/libcxxabi libcxxabi)
 
     target_compile_definitions(cxxabi_static PRIVATE _LIBCPP_HAS_NO_LIBRARY_ALIGNED_ALLOCATION)
+
+    install(FILES ${LLVM_PROJECT_PATH}/libcxxabi/LICENSE.TXT
+            DESTINATION licenses/libcxxabi)
 
 endfunction()
