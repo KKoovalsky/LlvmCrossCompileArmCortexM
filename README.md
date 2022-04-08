@@ -17,14 +17,12 @@ Exceptions are supported by default, but can be turned off to spare the final bi
 
 Currently, by default, Ubuntu is supported for building. To tweak it for your host machine, read on.
 
-There are two major CMake CACHE variables which define the target for which the library will be built:
+There is one major CMake CACHE variable, which defines the target for which the library will be built:
 
 * `LLVM_BAREMETAL_ARM_TARGET_COMPILE_FLAGS` - by default equal to: 
 `-mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16`, what, basically, means that by default ARM Cortex M4 MCU,
 with floating point support, is targeted. Change it to the corresponding target architecture, you want the libs be
 compiled for.
-* `LLVM_BAREMETAL_ARM_COMPILER_TARGET` - by default equal to `armv7em-none-eabi`; it corresponds to the default flags
-for the first variable mentioned. It should be `armv6m-none-eabi`, `armv7m-none-eabi`, `armv7em-none-eabi`, ...
 
 ### Basic single config building
 
@@ -166,3 +164,5 @@ Beware: `CPACK_ARCHIVE_COMPONENT_INSTALL`!
 24. CPack with multiple build directories setup can be used to pack artifacts from builds for various architectures.
 26. Install license of ARM GNU Toolchain when CPack-ing.
 27. Support `-frtti` on demand.
+28. Support Cortex-M55 half-precision.
+
