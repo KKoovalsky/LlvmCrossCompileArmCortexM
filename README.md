@@ -35,7 +35,6 @@ cmake \
     -G"Unix Makefiles" \
     -DCMAKE_BUILD_TYPE=MinSizeRel \
     -DLLVM_BAREMETAL_ARM_TARGET_COMPILE_FLAGS="-mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16" \
-    -DLLVM_BAREMETAL_ARM_COMPILER_TARGET="armv7em-none-eabi"
     ..
 
 # Provide the path where to install the libraries
@@ -60,8 +59,8 @@ cmake \
     -G"Ninja Multi-Config" \
     -DCMAKE_CONFIGURATION_TYPES="Release;Debug;MinSizeRel" \
     -DLLVM_BAREMETAL_ARM_TARGET_COMPILE_FLAGS="-mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16" \
-    -DLLVM_BAREMETAL_ARM_COMPILER_TARGET="armv7em-none-eabi"
     ..
+
 cmake --build . --config Release
 cmake --build . --config Debug
 cmake --build . --config MinSizeRel
