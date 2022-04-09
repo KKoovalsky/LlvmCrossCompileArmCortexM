@@ -13,6 +13,18 @@ This project can compile:
 
 Exceptions are supported by default, but can be turned off to spare the final binary size.
 
+## Supported architectures:
+
+* Cortex M0, arch: v6-m, cpu: cortex-m0, float: [soft]
+* Cortex M0+, arch: v6-m, cpu: cortex-m0plus, float: [soft]
+* Cortex-M1, arch: v6-m, cpu: cortex-m1, float: [soft]
+* Cortex-M3, arch: v7-m , cpu: cortex-m3, float: [soft]
+* Cortex-M4, arch: v7e-m, cpu: cortex-m4, float: [fpv4-sp-d16; soft]
+* Cortex-M7, arch: v7e-m, cpu: cortex-m7, float: [fpv5-sp-d16; fpv5-d16; soft]
+* Cortex-M23, arch: v8-m\_baseline, cpu: cortex-m23, float: [soft]
+* Cortex-M33, arch: v8-m\_mainline, cpu: cortex-m33, float: [fpv5-sp-d16; soft]
+* Cortex-M55, arch: v8.1m\_mainline, cpu: cortex-m55, float: [fpv5-sp-d16; fpv5-d16; soft]
+
 ## Building
 
 Currently, by default, Ubuntu is supported for building. To tweak it for your host machine, read on.
