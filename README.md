@@ -169,7 +169,7 @@ Automatically it can be done with:
 ```
 ./arm-none-eabi-gcc -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -print-file-name=libc.a
 ```
-
+29. Document why initfini is there and the linkage. Document how to override it.
 23. Create CPack components (`cpack_add_component`): C++ libs, clang-rt, C libs from the ARM GNU Toolchain. 
 Beware: `CPACK_ARCHIVE_COMPONENT_INSTALL`!
 24. CPack with multiple build directories setup can be used to pack artifacts from builds for various architectures.

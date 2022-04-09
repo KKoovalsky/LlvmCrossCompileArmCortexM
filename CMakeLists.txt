@@ -40,3 +40,5 @@ if(NOT LLVM_ARM_BAREMETAL_BUILD_COMPILER_RT_ONLY)
     EnableLibcxxAbi()
     EnableLibunwind()
 endif()
+
+add_subdirectory(src)
