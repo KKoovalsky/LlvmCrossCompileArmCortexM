@@ -23,8 +23,10 @@ function(InstallNewlib)
         ${newlib_dir}/librdpmon.a
     )
 
-    install(FILES ${newlib_libs} DESTINATION "lib/newlib")
+    install(FILES ${newlib_libs} DESTINATION lib/newlib)
     install(DIRECTORY ${ARM_GNU_TOOLCHAIN_PATH}/arm-none-eabi/include DESTINATION ".")
+    install(FILES ${ARM_GNU_TOOLCHAIN_PATH}/share/doc/gcc-arm-none-eabi/license.txt 
+        DESTINATION licenses/gcc-arm-none-eabi)
 
 endfunction()
 
