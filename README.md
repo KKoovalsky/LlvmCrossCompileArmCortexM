@@ -162,23 +162,16 @@ experimental library, ... Check out the main `CMakeLists.txt` of the subprojects
 
 ## TODO
 
+31. Build for all architectures without exceptions enabled.
+32. Test Ad.31 by exploring libraries sizes.
 18. Document how to use those libs from a compiler/linker command line or a `CMAKE_TOOLCHAIN_FILE`.
 19. Document why `-Wl,--target2=rel` is needed. Link to ARM ABI documentation.
 21. Document size of the binary similar to one compiled with ARM GNU Toolchain (a bit higher).
-28. Add 'Downloads' to GitHub with the library built for `armv7em`, all three configurations, with and without 
+33. Document the helper script - inside README.md, but also (more important) inside the script itself.
+29. Add 'Downloads' to GitHub with the library built for `armv7em`, all three configurations, with and without 
 exceptions.
 
-14. Include appropriate `libc`, `libm`, `libnosys`, `libc-nano`, `libg`, `librdimon.a`, `librdimon_nano.a`, 
-`librdimon-v2m.a`, `librdpmon.a` for specified architecture AND include headers, from the ARM GNU Toolchain.
- One needs to translate the flags from ad.12 to proper
-directory in the ARM GNU Toolchain, e.g.: `thumb/v7e-m+fp/hard`. It can be done either by the user, using a CMake
-option, or automatically.
-Automatically it can be done with:
-
-```
-./arm-none-eabi-gcc -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -print-file-name=libc.a
-```
-29. Document why initfini is there and the linkage. Document how to override it.
+30. Document why initfini is there and the linkage. Document how to override it.
 23. Create CPack components (`cpack_add_component`): C++ libs, clang-rt, C libs from the ARM GNU Toolchain. 
 Beware: `CPACK_ARCHIVE_COMPONENT_INSTALL`!
 24. CPack with multiple build directories setup can be used to pack artifacts from builds for various architectures.
