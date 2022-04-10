@@ -21,9 +21,6 @@ set(CMAKE_NM ${CLANG_COMPILER_PATH_PREFIX}/llvm-nm)
 set(LLVM_BAREMETAL_ARM_TARGET_COMPILE_FLAGS "-mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16" CACHE STRING
     "Basic target flags which define the cross-compile target")
 
-set(LLVM_BAREMETAL_ARM_COMPILER_TARGET "armv7em-none-eabi" CACHE STRING
-    "The compiler target forwarded to CMAKE_<LANG>_COMPILER_TARGET variable")
-
 string(CONCAT basic_flags
     ${LLVM_BAREMETAL_ARM_TARGET_COMPILE_FLAGS}
     " -fdata-sections -ffunction-sections"
