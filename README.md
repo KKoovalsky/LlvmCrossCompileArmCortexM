@@ -143,7 +143,7 @@ To disable exceptions, run the CMake configure and generate step, with:
 
 ### Building compiler-rt only
 
-Set the cache variable `LLVM_ARM_BAREMETAL_BUILD_COMPILER_RT_ONLY` to `ON`. It is set to `OFF` by default.
+Set the cache variable `LLVM_BAREMETAL_ARM_BUILD_COMPILER_RT_ONLY` to `ON`. It is set to `OFF` by default.
 
 ### Customizing LLVM project build 
 
