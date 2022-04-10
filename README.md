@@ -25,7 +25,7 @@ Exceptions are supported by default, but can be turned off to spare the final bi
 * Cortex-M33, arch: v8-m\_mainline, cpu: cortex-m33, float: [fpv5-sp-d16; soft]
 * Cortex-M55, arch: v8.1m\_mainline, cpu: cortex-m55, float: [fpv5-sp-d16; fpv5-d16; soft]
 
-## Building
+## Building and installing
 
 Currently, by default, Ubuntu is supported for building. To tweak it for your host machine, read on.
 
@@ -35,6 +35,9 @@ There is one major CMake CACHE variable, which defines the target for which the 
 `-mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16`, what, basically, means that by default ARM Cortex M4 MCU,
 with floating point support, is targeted. Change it to the corresponding target architecture, you want the libs be
 compiled for.
+
+newlib libc libraries (libc, libm, libg, librdimon, ...) will be installed by default, along with the headers.
+See [Disabling newlib installation](#disabling-newlib-installation).
 
 ### Basic single config building
 
@@ -144,6 +147,12 @@ To disable exceptions, run the CMake configure and generate step, with:
 ### Building compiler-rt only
 
 Set the cache variable `LLVM_BAREMETAL_ARM_BUILD_COMPILER_RT_ONLY` to `ON`. It is set to `OFF` by default.
+
+### Disabling newlib installation
+
+The newlib's libc implementation and friends, and its header files, which are bundled with the ARM GNU Toolchain,
+will be installed by default for the corresponding architecture. To disable this feature, set 
+`LLVM_BAREMETAL_ARM_INSTALL_NEWLIB` CMake cache variable to `OFF`.
 
 ### Customizing LLVM project build 
 

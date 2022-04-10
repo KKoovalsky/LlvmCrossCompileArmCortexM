@@ -32,6 +32,7 @@ include(cmake/llvm_project.cmake)
 option(LLVM_BAREMETAL_ARM_BUILD_COMPILER_RT_ONLY 
     "If set to ON, will build only the compiler-rt, otherwise it will also build libc++, libc++abi and libunwind"
     OFF)
+option(LLVM_BAREMETAL_ARM_INSTALL_NEWLIB "Install newlib libc and friends" ON)
 
 EnableCompilerRt()
 
@@ -42,3 +43,7 @@ if(NOT LLVM_BAREMETAL_ARM_BUILD_COMPILER_RT_ONLY)
 endif()
 
 add_subdirectory(src)
+
+if(LLVM_BAREMETAL_ARM_INSTALL_NEWLIB)
+    include(cmake/newlib.cmake)
+endif()
