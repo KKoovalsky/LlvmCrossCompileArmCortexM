@@ -18,8 +18,8 @@ Toolchain, as well as it might be easier to use these libraries with LLVM Toolch
 
 ## Features
 
-1. We have already compiled the libraries for you! See the [Releases]
-(https://github.com/KKoovalsky/LlvmCrossCompileArmCortexM/releases). **NOTE**, this is experimental: only the libraries
+1. We have already compiled the libraries for you! See the [Releases](https://github.com/KKoovalsky/LlvmCrossCompileArmCortexM/releases). 
+**NOTE**, this is experimental: only the libraries
 for ARM Cortex M4 has been entirely tested and verified. Others were not, but should work, though.
 2. Easy to use with LLVM toolchain.
 3. All the needed libraries are bundled into a single package: libc, libc++ and friends.
