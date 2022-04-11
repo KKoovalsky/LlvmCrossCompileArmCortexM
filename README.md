@@ -32,6 +32,10 @@ GNU Toolchain.
 
 ### What does a single Release package contain?
 
+The intention of a single package is to have a complete header and library set, without the need for pulling 
+various libraries from different places over the Internet. Single package contains all the C and C++ headers, as well
+as libc and libraries needed to link C++ code.
+
 In the [Releases](https://github.com/KKoovalsky/LlvmCrossCompileArmCortexM/releases) you can find a package compiled
 for your architecture. Each package contains:
 
