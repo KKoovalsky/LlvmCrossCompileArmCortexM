@@ -117,6 +117,15 @@ The currently used versions are:
 
 ## Tweaking
 
+Summary of CMake options and cache variables:
+
+| Name | Default value | Description |
+|------|---------------|-------------|
+| LLVM_BAREMETAL_ARM_ENABLE_EXCEPTIONS | ON | Controls exceptions enabled in libc++ and libc++abi |
+| LLVM_BAREMETAL_ARM_BUILD_COMPILER_RT_ONLY | OFF | When set to ON, will compile only compiler-rt, without libc++, libc++abi and libunwind |
+| LLVM_BAREMETAL_ARM_INSTALL_NEWLIB | ON | Whether to install (ON), or not (OFF), newlib's libc implementation and friends, and its header files, which are bundled with the ARM GNU Toolchain, for corresponding architecture. |
+| LLVM_BAREMETAL_ARM_ENABLE_EXCEPTIONS | ON | Controls exceptions enabled in libc++ and libc++abi |
+
 ### Changing paths to the toolchains and LLVM project
 
 Since Clang compiler, ARM GNU Toolchain and LLVM project are downloaded using the `FetchContent` CMake module, we
@@ -136,21 +145,6 @@ If your host machine is not Ubuntu 18+, you must provide proper LLVM + Clang sui
 
 The standard CMake approach applies here. Note that, when using a custom toolchain file, override the
 `FETCH_CONTENT_SOURCE_DIR_LLVM` to a dummy value, to prevent CMake from downloading LLVM + Clang.
-
-### Disabling exceptions
-
-To disable exceptions, run the CMake configure and generate step, with `LLVM_BAREMETAL_ARM_ENABLE_EXCEPTIONS` set
-to `OFF`.
-
-### Building compiler-rt only
-
-Set the cache variable `LLVM_BAREMETAL_ARM_BUILD_COMPILER_RT_ONLY` to `ON`. It is set to `OFF` by default.
-
-### Disabling newlib installation
-
-The newlib's libc implementation and friends, and its header files, which are bundled with the ARM GNU Toolchain,
-will be installed by default for the corresponding architecture. To disable this feature, set 
-`LLVM_BAREMETAL_ARM_INSTALL_NEWLIB` CMake cache variable to `OFF`.
 
 ### Customizing LLVM project build 
 
