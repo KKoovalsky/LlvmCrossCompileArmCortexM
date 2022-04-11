@@ -182,7 +182,7 @@ the default toolchain file. If another toolchain file is used, then this `MinSiz
 default value, defined by CMake vendors.
 
 4. The `pack` target will pack all the libraries to a `tar.gz` archive, for the corresponding configuration.
-The resulting archive name will be as explained in the section [Which package to choose][#which-package-to-choose].
+The resulting archive name will be as explained in the section [Which package to choose](#which-package-to-choose).
 
 ---
 
