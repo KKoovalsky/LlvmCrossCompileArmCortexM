@@ -139,10 +139,8 @@ The standard CMake approach applies here. Note that, when using a custom toolcha
 
 ### Disabling exceptions
 
-To disable exceptions, run the CMake configure and generate step, with:
-
-* `LIBCXXABI_ENABLE_EXCEPTIONS=OFF`
-* `LIBCXX_ENABLE_EXCEPTIONS=OFF`
+To disable exceptions, run the CMake configure and generate step, with `LLVM_BAREMETAL_ARM_ENABLE_EXCEPTIONS` set
+to `OFF`.
 
 ### Building compiler-rt only
 

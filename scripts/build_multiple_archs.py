@@ -150,9 +150,8 @@ def build_multi_config(target_compiler_flags, disable_exceptions=False):
         '-DCMAKE_CONFIGURATION_TYPES={}'.format(';'.join(configurations)),
         '-DLLVM_BAREMETAL_ARM_TARGET_COMPILE_FLAGS={}'.format(flags)]
     if disable_exceptions:
-        configure_and_generate_cmd.extend([
-            '-DLIBCXXABI_ENABLE_EXCEPTIONS=OFF',
-            '-DLIBCXX_ENABLE_EXCEPTIONS=OFF'])
+        configure_and_generate_cmd.append(
+            '-DLLVM_BAREMETAL_ARM_ENABLE_EXCEPTIONS=OFF')
     configure_and_generate_cmd.append('../..')
 
     print('>' * 120)

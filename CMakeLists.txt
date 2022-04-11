@@ -33,8 +33,17 @@ option(LLVM_BAREMETAL_ARM_BUILD_COMPILER_RT_ONLY
     "If set to ON, will build only the compiler-rt, otherwise it will also build libc++, libc++abi and libunwind"
     OFF)
 option(LLVM_BAREMETAL_ARM_INSTALL_NEWLIB "Install newlib libc and friends" ON)
+option(LLVM_BAREMETAL_ARM_ENABLE_EXCEPTIONS "Enable exceptions in libc++ and libc++abi" ON)
 
 EnableCompilerRt()
+
+if(LLVM_BAREMETAL_ARM_ENABLE_EXCEPTIONS)
+    set(LIBCXX_ENABLE_EXCEPTIONS ON CACHE BOOL "" FORCE)
+    set(LIBCXXABI_ENABLE_EXCEPTIONS ON CACHE BOOL "" FORCE)
+else()
+    set(LIBCXX_ENABLE_EXCEPTIONS OFF CACHE BOOL "" FORCE)
+    set(LIBCXXABI_ENABLE_EXCEPTIONS OFF CACHE BOOL "" FORCE)
+endif()
 
 if(NOT LLVM_BAREMETAL_ARM_BUILD_COMPILER_RT_ONLY)
     EnableLibcxx()
