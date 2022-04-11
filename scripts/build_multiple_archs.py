@@ -2,13 +2,41 @@
 import os.path as path
 from pathlib import Path
 import subprocess
+import click
 
 # Supported architecture dictionary layout:
 #   'cpu': string (e.g. 'cortex-m0')
 #   'float': list (e.g. ['fpv4-sp-d16', 'soft'])
 
 
+@click.command()
 def build_multiple_archs():
+    """ Builds all the supported architectures
+
+    This script performs following steps:
+
+    1. From the main README.md, it takes the "Supported architectures" section
+       content and parses it.
+
+    2. For each supported architecture the target compiler flags are created,
+       to set the LLVM_BAREMETAL_ARM_TARGET_COMPILE_FLAGS CMake cache variable.
+
+    3. A build directory is created inside which all the builds will be
+       performed.
+
+    4. Dependencies are downloaded using a dummy build, to reuse dependency
+       fetching implemented within the CMake scripts (FetchContent).
+
+    5. For each generated compiler flags a build is run, both with and without
+       exceptions disabled.
+
+    6. The results of every build is packed using the 'pack' custom CMake
+       target.
+
+    After that the packed *.tar.gz archives can be collected and deployed.
+
+    """
+
     target_compiler_flags_set = \
         load_target_compiler_flags_for_supported_archs()
     create_build_directory()

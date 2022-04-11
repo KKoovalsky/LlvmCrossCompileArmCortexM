@@ -239,9 +239,15 @@ The LLVM Project is built using CMake, and the main `CMakeLists.txt` for each of
 CMake options and cache variables, which affect the build. One can e.g. turn on assertions, include docs, build
 experimental library, ... Check out the main `CMakeLists.txt` of the subprojects for details.
 
+## Helper scripts
+
+Located in the `scripts/` directory:
+
+* `./scripts/build_multiple_archs.py` - builder of all the supported architectures. Run it with `--help` option to
+check out what it does in details.
+
 ## TODO
 
-33. Document the helper script - inside README.md, but also (more important) inside the script itself.
 29. Add 'Downloads' to GitHub with the library built for `armv7em`, all three configurations, with and without 
 exceptions.
 
