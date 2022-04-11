@@ -24,7 +24,8 @@ function(InstallNewlib)
     )
 
     install(FILES ${newlib_libs} DESTINATION lib/newlib)
-    install(DIRECTORY ${ARM_GNU_TOOLCHAIN_PATH}/arm-none-eabi/include DESTINATION ".")
+    install(DIRECTORY ${ARM_GNU_TOOLCHAIN_PATH}/arm-none-eabi/include DESTINATION "."
+        PATTERN "c++/*" EXCLUDE)
     install(FILES ${ARM_GNU_TOOLCHAIN_PATH}/share/doc/gcc-arm-none-eabi/license.txt 
         DESTINATION licenses/gcc-arm-none-eabi)
 
