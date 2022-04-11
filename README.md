@@ -4,14 +4,17 @@ Cross-compiled and fine-tuned LLVM libraries for ARM baremetal targets. The targ
 **arm\*-none-eabi** triplets, which don't run an OS (but can run e.g. an RTOS), thus, do not support threads, 
 monotonic clock, filesystem, random device etc. Those are **ARM Cortex M** MCUs.
 
-This project can compile:
+This project provides:
 
 * compiler-rt
 * libc++
 * libc++abi
 * libunwind
 
-Exceptions are supported by default, but can be turned off to spare the final binary size.
+The libraries are compiled in two flavors: with and without exceptions.
+
+For `Release` and `MinSizeRel` packages, the final binary size is few kB higher than a binary compiled with ARM
+GNU Toolchain.
 
 ## Supported architectures:
 
@@ -25,7 +28,79 @@ Exceptions are supported by default, but can be turned off to spare the final bi
 * Cortex-M33, arch: v8-m\_mainline, cpu: cortex-m33, float: [fpv5-sp-d16; soft]
 * Cortex-M55, arch: v8.1m\_mainline, cpu: cortex-m55, float: [fpv5-sp-d16; fpv5-d16; soft]
 
-## Building and installing
+## Usage 
+
+### What does a single Release package contain?
+
+In the [Releases](https://github.com/KKoovalsky/LlvmCrossCompileArmCortexM/releases) you can find a package compiled
+for your architecture. Each package contains:
+
+* `include` directory, and inside:
+    - newlib libc headers, copied from the ARM GNU Toolchain, for the corresponding architecture.
+    - `c++/v1` directory with headers from the cross-compiled LLVM libc++ library
+* `lib` directory, which contains:
+    - compiler-rt, libc++, libc++abi and libunwind cross-compiled LLVM libc++ libraries.
+    - `libinitfini.a` which defines dummy `_init()` and `_fini()` symbols.
+    - `newlib` directory, where the libc libraries and friends, are copied from the ARM GNU Toolchain, for the 
+corresponding architecture.
+* `licenses` directory, which contains software license for all the bundled libraries.
+
+### Which package to choose?
+
+The name of the package describes, what does it contain. The naming convention is:
+
+> <Name>-<Version tag from this repo>-<Architecture and subarchitecture>-<Floating point support>-<Exception support>-<Build flavor>
+
+* _Architecture and subarchitecture_ - arm-cortex-m4, or arm-cortex-m0plus, etc.
+* _Floating point support_ - if compiled for architecture without FPU, the value is: *soft_float*. Otherwise, it's the
+FPU name, e.g.: _fpv4-sp-d16_.
+* _Exception support_ - whether compiled with exception support or without it.
+* _Build flavor_ - may be:
+    - `Release`: compiled with `-O3` and NO Debug symbols.
+    - `Debug`: compiled with `-O0` and with Debug symbols.
+    - `MinSizeRel`: compiled with `-Oz` and NO debug symbols.
+
+### How to incorporate the libraries?
+
+You can download the libraries manually, or using e.g. `FetchContent` CMake module, or any other automatic way.
+
+When cross-compiling firmware with `clang`:
+
+1. Add: 
+
+```
+-isystem <path_to_unpacked_lib>/include/c++/v1
+-isystem <path_to_unpacked_lib>/include/ #A
+```
+
+to `clang` and `clang++` invocation. The order matters, because standard headers of libc++ use `#include_next`, to
+include headers supplied with the libc.
+
+2. Add:
+
+```
+-L<path_to_unpacked_lib>/lib/newlib #A
+-L<path_to_unpacked_lib>/lib
+-linitfini #A #B
+-Wl,--target2=rel" #C
+```
+
+to the linker invocation.
+
+**NOTE**:
+
+1. If you don't want to use the bundled newlib libc, do not use the lines marked with **#A**.
+2. A package contains dummy `_init()` and `_fini()` symbols, which are needed by the newlib libc (**#B**) Their bodies
+are empty, but the newlib's libc links to them. Use of `_init()` and `_fini()` is obsolete in favor of init/fini arrays.
+To use custom `_init()` and `_fini()`, simply, remove the line **#B**.
+3. `-Wl,--target2=rel` flag (**#C**) is needed when using exceptions. Clang will create a `.got` section with exception 
+handlers. Instead, we have to use the exception index table. This compile flag fixes that.
+
+To build with another compiler, one would have to use `-nostlib` flag and link the runtime library, libc++ and others
+by hand. By default, `clang` uses links to the libs from the LLVM Project, thus, `-nostdlib` is not needed when using
+`clang`.
+
+## Building from sources and installing
 
 Currently, by default, Ubuntu is supported for building. To tweak it for your host machine, read on.
 
@@ -153,14 +228,10 @@ experimental library, ... Check out the main `CMakeLists.txt` of the subprojects
 
 ## TODO
 
-18. Document how to use those libs from a compiler/linker command line or a `CMAKE_TOOLCHAIN_FILE`.
-19. Document why `-Wl,--target2=rel` is needed. Link to ARM ABI documentation.
-21. Document size of the binary similar to one compiled with ARM GNU Toolchain (a bit higher).
 33. Document the helper script - inside README.md, but also (more important) inside the script itself.
 29. Add 'Downloads' to GitHub with the library built for `armv7em`, all three configurations, with and without 
 exceptions.
 
-30. Document why initfini is there and the linkage. Document how to override it.
 23. Create CPack components (`cpack_add_component`): C++ libs, clang-rt, C libs from the ARM GNU Toolchain. 
 Beware: `CPACK_ARCHIVE_COMPONENT_INSTALL`!
 24. CPack with multiple build directories setup can be used to pack artifacts from builds for various architectures.
