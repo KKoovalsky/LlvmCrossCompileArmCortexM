@@ -53,7 +53,7 @@ corresponding architecture.
 
 The name of the package describes, what does it contain. The naming convention is:
 
-\> \<Name\>-\<Version tag from this repo\>-\<Architecture and subarchitecture\>-\<Floating point support\>-\<Exception support\>-\<Build flavor\>
+> \<Name\>-\<Version tag from this repo\>-\<Architecture and subarchitecture\>-\<Floating point support\>-\<Exception support\>-\<Build flavor\>
 
 * _Architecture and subarchitecture_ - arm-cortex-m4, or arm-cortex-m0plus, etc.
 * _Floating point support_ - if compiled for architecture without FPU, the value is: *soft_float*. Otherwise, it's the
