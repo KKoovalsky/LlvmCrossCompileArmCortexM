@@ -94,7 +94,7 @@ to the linker invocation.
 **NOTE**:
 
 1. If you don't want to use the bundled newlib libc, do not use the lines marked with **#A**.
-2. A package contains dummy `_init()` and `_fini()` symbols, which are needed by the newlib libc (**#B**) Their bodies
+2. A package contains dummy `_init()` and `_fini()` symbols, which are needed by the newlib libc (**#B**). Their bodies
 are empty, but the newlib's libc links to them. Use of `_init()` and `_fini()` is obsolete in favor of init/fini arrays.
 To use custom `_init()` and `_fini()`, simply, remove the line **#B**.
 3. `-Wl,--target2=rel` flag (**#C**) is needed when using exceptions. Clang will create a `.got` section with exception 
