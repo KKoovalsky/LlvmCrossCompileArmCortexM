@@ -173,7 +173,6 @@ exceptions.
 23. Create CPack components (`cpack_add_component`): C++ libs, clang-rt, C libs from the ARM GNU Toolchain. 
 Beware: `CPACK_ARCHIVE_COMPONENT_INSTALL`!
 24. CPack with multiple build directories setup can be used to pack artifacts from builds for various architectures.
-26. Install license of ARM GNU Toolchain when CPack-ing.
 27. Support `-frtti` on demand.
 28. Support Cortex-M55 half-precision.
 
