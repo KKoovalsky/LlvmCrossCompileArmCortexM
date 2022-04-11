@@ -11,10 +11,21 @@ This project provides:
 * libc++abi
 * libunwind
 
-The libraries are compiled in two flavors: with and without exceptions.
+## Why?
 
-For `Release` and `MinSizeRel` packages, the final binary size is few kB higher than a binary compiled with ARM
-GNU Toolchain.
+Because we can! Actually, that's the main reason, but seriously, it might be an alternative to the popular ARM GNU
+Toolchain, as well as it might be easier to use these libraries with LLVM Toolchain.
+
+## Features
+
+1. We have already compiled the libraries for you! See the [Releases]
+(https://github.com/KKoovalsky/LlvmCrossCompileArmCortexM/releases). **NOTE**, this is experimental: only the libraries
+for ARM Cortex M4 has been entirely tested and verified. Others were not, but should work, though.
+2. Easy to use with LLVM toolchain.
+3. All the needed libraries are bundled into a single package: libc, libc++ and friends.
+4. Choice of package with and without exception support.
+5. Choice of flavor: with or without debug symbols, plus a size-optimized build (`-Oz` flag).
+6. Comparing to ARM GNU Toolchain, the final binary size is only few kB higher.
 
 ## Supported architectures:
 
