@@ -11,11 +11,11 @@ import subprocess
 def build_multiple_archs():
     target_compiler_flags_set = \
         load_target_compiler_flags_for_supported_archs()
-    print(target_compiler_flags_set)
     create_build_directory()
     download_dependencies()
     for target_compiler_flags in target_compiler_flags_set:
         build_multi_config(target_compiler_flags)
+        build_multi_config(target_compiler_flags, disable_exceptions=True)
 
 
 def load_target_compiler_flags_for_supported_archs():
@@ -127,7 +127,7 @@ def download_dependencies():
     subprocess.run(basic_configure_and_generate_cmd, cwd=local_build_dir)
 
 
-def build_multi_config(target_compiler_flags):
+def build_multi_config(target_compiler_flags, disable_exceptions=False):
     deps_dir = get_dependencies_location()
     llvm_dir = path.join(deps_dir, 'llvm-src')
     arm_gnu_toolchain_dir = path.join(deps_dir, 'armgnutoolchain-src')
@@ -135,7 +135,10 @@ def build_multi_config(target_compiler_flags):
 
     name, flags = target_compiler_flags
     local_build_dir = path.join(get_build_directory(), 'build_{}'.format(name))
+    if disable_exceptions:
+        local_build_dir += '_no_exceptions'
     Path(local_build_dir).mkdir(exist_ok=True)
+
     configurations = ['Release', 'Debug', 'MinSizeRel']
     configure_and_generate_cmd = [
         'cmake',
@@ -145,8 +148,12 @@ def build_multi_config(target_compiler_flags):
             arm_gnu_toolchain_dir),
         '-DFETCHCONTENT_SOURCE_DIR_LLVMPROJECT={}'.format(llvm_project_dir),
         '-DCMAKE_CONFIGURATION_TYPES={}'.format(';'.join(configurations)),
-        '-DLLVM_BAREMETAL_ARM_TARGET_COMPILE_FLAGS={}'.format(flags),
-        '../..']
+        '-DLLVM_BAREMETAL_ARM_TARGET_COMPILE_FLAGS={}'.format(flags)]
+    if disable_exceptions:
+        configure_and_generate_cmd.extend([
+            '-DLIBCXXABI_ENABLE_EXCEPTIONS=OFF',
+            '-DLIBCXX_ENABLE_EXCEPTIONS=OFF'])
+    configure_and_generate_cmd.append('../..')
 
     print('>' * 120)
     print('Running configure and generate step for target: {}'.format(name))

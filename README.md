@@ -162,8 +162,6 @@ experimental library, ... Check out the main `CMakeLists.txt` of the subprojects
 
 ## TODO
 
-31. Build for all architectures without exceptions enabled.
-32. Test Ad.31 by exploring libraries sizes.
 18. Document how to use those libs from a compiler/linker command line or a `CMAKE_TOOLCHAIN_FILE`.
 19. Document why `-Wl,--target2=rel` is needed. Link to ARM ABI documentation.
 21. Document size of the binary similar to one compiled with ARM GNU Toolchain (a bit higher).
