@@ -43,7 +43,7 @@ for your architecture. Each package contains:
     - newlib libc headers, copied from the ARM GNU Toolchain, for the corresponding architecture.
     - `c++/v1` directory with headers from the cross-compiled LLVM libc++ library
 * `lib` directory, which contains:
-    - compiler-rt, libc++, libc++abi and libunwind cross-compiled LLVM libc++ libraries.
+    - compiler-rt, libc++, libc++abi and libunwind cross-compiled LLVM libraries.
     - `libinitfini.a` which defines dummy `_init()` and `_fini()` symbols.
     - `newlib` directory, where the libc libraries and friends, are copied from the ARM GNU Toolchain, for the 
 corresponding architecture.
@@ -182,9 +182,7 @@ the default toolchain file. If another toolchain file is used, then this `MinSiz
 default value, defined by CMake vendors.
 
 4. The `pack` target will pack all the libraries to a `tar.gz` archive, for the corresponding configuration.
-The resulting archive name will be: _\<ProjectName\>-\<Version\>-\<Target\>-\<Config\>_, e.g.:
-
-> LlvmArmBaremetal-0.1.1-armv7em-Debug.tar.gz
+The resulting archive name will be as explained in the section [Which package to choose][#which-package-to-choose].
 
 ---
 
