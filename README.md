@@ -37,7 +37,7 @@ with floating point support, is targeted. Change it to the corresponding target 
 compiled for.
 
 newlib libc libraries (libc, libm, libg, librdimon, ...) will be installed by default, along with the headers.
-See [Disabling newlib installation](#disabling-newlib-installation).
+This behaviour can be disabled through [tweaking](#tweaking).
 
 ### Basic single config building
 
@@ -124,7 +124,6 @@ Summary of CMake options and cache variables:
 | LLVM_BAREMETAL_ARM_ENABLE_EXCEPTIONS | ON | Controls exceptions enabled in libc++ and libc++abi |
 | LLVM_BAREMETAL_ARM_BUILD_COMPILER_RT_ONLY | OFF | When set to ON, will compile only compiler-rt, without libc++, libc++abi and libunwind |
 | LLVM_BAREMETAL_ARM_INSTALL_NEWLIB | ON | Whether to install (ON), or not (OFF), newlib's libc implementation and friends, and its header files, which are bundled with the ARM GNU Toolchain, for corresponding architecture. |
-| LLVM_BAREMETAL_ARM_ENABLE_EXCEPTIONS | ON | Controls exceptions enabled in libc++ and libc++abi |
 
 ### Changing paths to the toolchains and LLVM project
 
