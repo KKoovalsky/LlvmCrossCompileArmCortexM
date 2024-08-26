@@ -10,7 +10,7 @@ set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_LIST_DIR}/cmake/llvm_toolchain_file.cma
 
 project(LlvmArmBaremetal 
     VERSION 0.1.1
-    LANGUAGES CXX C)
+    LANGUAGES CXX C ASM)
 
 option(LLVM_BAREMETAL_ARM_BUILD_COMPILER_RT_ONLY 
     "If set to ON, will build only the compiler-rt, otherwise it will also build libc++, libc++abi and libunwind"

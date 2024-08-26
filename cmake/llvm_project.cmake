@@ -25,6 +25,7 @@ function(EnableLibunwind)
     option(LIBUNWIND_INCLUDE_TESTS "Build the libunwind tests." OFF)
     option(LIBUNWIND_IS_BAREMETAL "Build libunwind for baremetal targets." ON)
     option(LIBUNWIND_REMEMBER_HEAP_ALLOC "Use heap instead of the stack for .cfi_remember_state." ON)
+    option(LIBUNWIND_INSTALL_HEADERS "Install headers of libunwind" ON)
 
     add_subdirectory(${LLVM_PROJECT_PATH}/libunwind libunwind)
 
